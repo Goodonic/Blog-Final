@@ -1,0 +1,44 @@
+<!--suppress ALL -->
+<div class="nav-scroller py-1 mb-2">
+  <nav class="nav d-flex justify-content-between">
+    <a class="p-2 text-muted" (click)='categoryFilter("World")'>World</a>
+    <a class="p-2 text-muted" (click)='categoryFilter("Technology")'>Technology</a>
+    <a class="p-2 text-muted" (click)='categoryFilter("Design")'>Design</a>
+    <a class="p-2 text-muted" (click)='categoryFilter("Culture")'>Culture</a>
+    <a class="p-2 text-muted" (click)='categoryFilter("Business")'>Business</a>
+    <a class="p-2 text-muted" (click)='categoryFilter("Opinion")'>Opinion</a>
+    <a class="p-2 text-muted" (click)='categoryFilter("Science")'>Science</a>
+    <a class="p-2 text-muted" (click)='categoryFilter("Health")'>Health</a>
+    <a class="p-2 text-muted" (click)='categoryFilter("Style")'>Style</a>
+    <a class="p-2 text-muted" (click)='categoryFilter("Travel")'>Travel</a>
+  </nav>
+</div>
+
+<div class="row d-flex">
+  <div class="figure">
+    <img class="photo" src="https://image.winudf.com/v2/image/Y29tLldhbGRlbWFyVUEuYXBwMDIzM19zY3JlZW5zaG90c183XzFiMGFmOTRk/screen-7.jpg?fakeurl=1&type=.jpg" alt="Фото">
+    <div class="col-md-6 px-0, p-4">
+      <h1 class="display-4 font-italic"><i>Welcome</i></h1>
+      <p class="lead my-5 ">This is a small news blog where everyone can share their news with the world</p>
+<!--      <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>-->
+    </div>
+  </div>
+
+
+  <div *ngFor="let post of posts" class="col-md-4 p-3 ">
+    <div class="p-0 mb-4 box-shadow">
+      <quill-view [content]="post.photo" ></quill-view>
+      <div class="card-body mb-3">
+        <div class="m-0 d-flex justify-content-between align-items-center">
+          <strong class="mb-2 text-primary">{{ post.category }}</strong>
+          <small class="text-muted">{{ post.data | date: "short"}}</small>
+        </div>
+        <h4 class="m-0"><a class="text-dark" [routerLink]="['postPage', post._id]" >{{ post.title }}</a></h4>
+        <quill-view [content]="post.text" ></quill-view>
+        <small *ngIf="post.text.length >= 150" class="text-muted m-3" >Читать дальше...</small>
+      </div>
+
+    </div>
+  </div>
+
+</div>

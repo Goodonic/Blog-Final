@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="m-0 d-flex justify-content-between align-items-center">
+    <h1>{{post.title}}</h1>
+    <button *ngIf="login == post.author" class="btn btn-sm btn-danger" (click)="deletePost()">Delete</button>
+  </div>
+    <div class="m-0 d-flex justify-content-between align-items-center">
+      <p><strong class="mb-2 text-primary">{{ post.category }} </strong></p>
+      <small class="text-muted">author: @{{post.author}} {{ post.data | date:"short"}}</small>
+    </div>
+  <quill-view [content]="post.photo" ></quill-view>
+    <h4 class="m-0"><a class="text-dark" [routerLink]="['postPage', post._id]" >{{ post.title }}</a></h4>
+    <quill-view [content]="post.text" ></quill-view>
+</div>
